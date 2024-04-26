@@ -1,23 +1,47 @@
+import java.util.Objects;
+
 public class Person {
 	private String name;
-	private int id;
-
-	public Person(String name, int id) {
+	private int ID;
+	
+	public Person(String name, int ID)
+	{
 		this.name = name;
-		this.id = id;
+		this.ID = ID;
 	}
-
-	public String getName() {
+	
+	public String getName()
+	{
 		return this.name;
 	}
+	
+	public int getId()
+	{
+		return this.ID;
+	}
 
-	public int getId() {
-		return this.id;
+	@Override
+	public int hashCode() {
+		return Objects.hash(ID);
 	}
 
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", id=" + id + "]";
+		return "Person [name=" + name + ", ID=" + ID + "]";
 	}
 
+	// This is how the hashset decides if an object is equal to another.
+	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj)
+	        return true;
+	    if (obj == null || getClass() != obj.getClass())
+	        return false;
+	    Person other = (Person) obj;
+	    return ID == other.ID;  // Compare based on ID only
+	}
+	
+	
+	
 }
